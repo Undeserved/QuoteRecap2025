@@ -1,0 +1,14 @@
+[
+  {
+    "Game": "Entry 1",
+    "QuoteCount": 50
+  },
+  {
+    "Game": "Entry 2",
+    "QuoteCount": 75
+  },  
+  {
+    "Game": "Other",
+    "QuoteCount": 33
+  }
+]

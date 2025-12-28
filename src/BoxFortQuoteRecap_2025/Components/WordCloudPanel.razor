@@ -1,0 +1,13 @@
+﻿@inject IJSRuntime JS
+@inject IMediator Mediator
+
+<canvas id="wordCloudCanvas" width="1024" height="256"></canvas>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (!firstRender) return;
+
+        var items = await Mediator.Send(new GenerateWordCloudCommand());
+        await JS.InvokeVoidAsync("renderWordCloud", "wordCloudCanvas", items);
+    }
+}

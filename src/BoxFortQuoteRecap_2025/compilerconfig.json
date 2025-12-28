@@ -1,0 +1,22 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/BespokeMenu.css",
+    "inputFile": "wwwroot/css/BespokeMenu.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/IsometricStyle.css",
+    "inputFile": "wwwroot/css/IsometricStyle.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/IsometricStyle.css",
+    "inputFile": "wwwroot/css/IsometricStyle.sass"
+  },
+  {
+    "outputFile": "wwwroot/css/IsoStyle.css",
+    "inputFile": "wwwroot/css/IsoStyle.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/CircleOfTheMoon.css",
+    "inputFile": "wwwroot/css/CircleOfTheMoon.scss"
+  }
+]

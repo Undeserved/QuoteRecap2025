@@ -1,0 +1,92 @@
+﻿@using MediatR
+@using BoxFortQuoteRecap_2025.Application.Queries
+@using BoxFortQuoteRecap_2025.Application.Models
+@inject IMediator Mediator
+@inject IJSRuntime JS
+
+<div class="graphs-panel">
+    <h2>Quote Activity – Graphs</h2>
+
+    @if (IsLoading) {
+        <p>Loading graphs…</p>
+    } else if (LoadError is not null) {
+        <div class="error">@LoadError</div>
+    } else {
+        <div class="chart-block">
+            <h3>Histogram</h3>
+            <canvas id="histogramChart" width="600" height="300"></canvas>
+        </div>
+
+        <div class="chart-block">
+            <h3>Hourly Heatmap</h3>
+            <canvas id="heatmapChart" width="420" height="260"></canvas>
+        </div>
+    }
+</div>
+
+@code {
+    private bool IsLoading { get; set; } = true;
+    private string? LoadError { get; set; }
+    private HistogramEntry[]? HistogramData { get; set; }
+    private HeatmapEntry[]? HeatmapData { get; set; }
+    private IJSObjectReference? _module;
+
+    private bool _renderedOnce = false;
+
+    protected override async Task OnInitializedAsync() {
+        try {
+            IsLoading = true;
+
+            HistogramData = (await Mediator.Send(new GetQuoteHistogramQuery()))?.ToArray() ?? Array.Empty<HistogramEntry>();
+            HeatmapData = (await Mediator.Send(new GetQuoteHourlySummaryQuery()))?.ToArray() ?? Array.Empty<HeatmapEntry>();
+        } catch (Exception ex) {
+            LoadError = ex.Message;
+        } finally {
+            IsLoading = false;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (firstRender) {
+            var version = typeof(Program).Assembly.GetName().Version?.ToString();
+            _module = await JS.InvokeAsync<IJSObjectReference>(
+                "import", $"/js/retroCharts.js?v={version}");
+        }
+
+        if (!_renderedOnce && !IsLoading && _module is not null) {
+            try {
+                if (HistogramData?.Length > 0) {
+                    await _module.InvokeVoidAsync(
+                        "renderHistogram",
+                        "histogramChart",
+                        HistogramData,
+                        new {
+                            width = 600,
+                            height = 300,
+                            padding = 40,
+                            retroOutline = true
+                        }
+                    );
+                }
+
+                if (HeatmapData?.Length > 0) {
+                    await _module.InvokeVoidAsync(
+                        "renderHeatmap",
+                        "heatmapChart",
+                        HeatmapData,
+                        new {
+                            width = 420,
+                            height = 260,
+                            retroOutline = true
+                        }
+                    );
+                }
+
+                _renderedOnce = true;
+            } catch (Exception ex) {
+                LoadError = $"JS error: {ex.Message}";
+                StateHasChanged();
+            }
+        }
+    }
+}

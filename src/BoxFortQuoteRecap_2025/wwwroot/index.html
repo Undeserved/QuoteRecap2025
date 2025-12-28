@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BoxFortQuoteRecap_2025</title>
+
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/CircleOfTheMoon.css" />
+
+    <link rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+          as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+          rel="stylesheet">
+
+    <script>
+        // Environment-sensitive base href
+        const isLocal =
+            location.hostname === "localhost";
+
+        const base = document.createElement("base");
+        base.href = isLocal ? "/" : "/QuoteRecap2025/";
+        document.head.appendChild(base);
+    </script>
+</head>
+
+<body>
+    <div id="app">Loading…</div>
+
+    <script src="js/wordcloud.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

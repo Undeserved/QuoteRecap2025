@@ -1,0 +1,79 @@
+﻿<!-- <div class="background-overlay"></div> It didn't look as good as I hoped-->
+
+@* <div class="app-banner">
+    <img src="res/BoxFortQuoteRecap.png" alt="BoxFort Quote Recap" />
+</div> *@
+
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+@using BoxFortQuoteRecap_2025.Components
+<div class="ui-container">
+
+    <!-- LEFT MENU -->
+    <div class="ui-menu">
+        <div class="ui-menu-button @(ActivePanel=="stats"?"active":"")" @onclick='() => SetPanel("stats")'>STATS</div>
+        <div class="ui-menu-button @(ActivePanel == "top10" ? "active" : "")" @onclick='() => SetPanel("top10")'>TOP QUOTES</div>
+        <div class="ui-menu-button @(ActivePanel == "topclips" ? "active" : "")" @onclick='() => SetPanel("topclips")'>CLIPS</div>
+        <div class="ui-menu-button @(ActivePanel=="wordcloud"?"active":"")" @onclick='() => SetPanel("wordcloud")'>WORD CLOUD</div>
+        <div class="ui-menu-button @(ActivePanel == "gamestats" ? "active" : "")" @onclick='() => SetPanel("gamestats")'>GAME STATS</div>
+        <div class="ui-menu-button @(ActivePanel == "graphs" ? "active" : "")" @onclick='() => SetPanel("graphs")'>GRAPHS</div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="ui-panel">
+        @if (ActivePanel == "stats") {
+            <StatsPanel />
+        } else if (ActivePanel == "wordcloud") {
+            <WordCloudPanel />
+        } else if (ActivePanel == "gamestats") {
+            <GamesPanel/>
+        } else if (ActivePanel == "graphs") {
+            <GraphsPanel />
+        } else if (ActivePanel == "top10") {
+            <TopQuotesPanel />
+        }else if (ActivePanel == "topclips") {
+            <TopClipsPanel />
+        }
+    </div>
+
+    <div class="ui-status">STATUS / @UiStatus</div>
+</div>
+
+@code {
+    private string ActivePanel = "stats";
+    private string UiStatus = "GOOD";
+
+    protected override void OnInitialized() {
+        UiStatus = RollStatus();
+    }
+
+    void SetPanel(string panel) {
+        ActivePanel = panel;
+    }
+
+    private static string RollStatus() {
+        var rng = Random.Shared;
+        var roll = rng.NextDouble();
+
+        if (roll < 0.95)
+            return "GOOD";
+
+        // 5% chance split evenly because I'm lazy, lmao
+        return rng.Next(3) switch {
+            0 => "POISON",
+            1 => "STONE",
+            _ => "CURSE"
+        };
+    }
+}

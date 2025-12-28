@@ -1,0 +1,317 @@
+[
+  {
+    "Weekday": 1,
+    "Hour": 0,
+    "Count": 4
+  },
+  {
+    "Weekday": 1,
+    "Hour": 17,
+    "Count": 1
+  },
+  {
+    "Weekday": 1,
+    "Hour": 18,
+    "Count": 87
+  },
+  {
+    "Weekday": 1,
+    "Hour": 19,
+    "Count": 131
+  },
+  {
+    "Weekday": 1,
+    "Hour": 20,
+    "Count": 57
+  },
+  {
+    "Weekday": 1,
+    "Hour": 21,
+    "Count": 50
+  },
+  {
+    "Weekday": 1,
+    "Hour": 22,
+    "Count": 31
+  },
+  {
+    "Weekday": 1,
+    "Hour": 23,
+    "Count": 33
+  },
+  {
+    "Weekday": 2,
+    "Hour": 0,
+    "Count": 18
+  },
+  {
+    "Weekday": 2,
+    "Hour": 2,
+    "Count": 3
+  },
+  {
+    "Weekday": 2,
+    "Hour": 18,
+    "Count": 101
+  },
+  {
+    "Weekday": 2,
+    "Hour": 19,
+    "Count": 84
+  },
+  {
+    "Weekday": 2,
+    "Hour": 20,
+    "Count": 101
+  },
+  {
+    "Weekday": 2,
+    "Hour": 21,
+    "Count": 73
+  },
+  {
+    "Weekday": 2,
+    "Hour": 22,
+    "Count": 51
+  },
+  {
+    "Weekday": 2,
+    "Hour": 23,
+    "Count": 20
+  },
+  {
+    "Weekday": 3,
+    "Hour": 0,
+    "Count": 3
+  },
+  {
+    "Weekday": 3,
+    "Hour": 16,
+    "Count": 1
+  },
+  {
+    "Weekday": 3,
+    "Hour": 17,
+    "Count": 1
+  },
+  {
+    "Weekday": 3,
+    "Hour": 18,
+    "Count": 139
+  },
+  {
+    "Weekday": 3,
+    "Hour": 19,
+    "Count": 92
+  },
+  {
+    "Weekday": 3,
+    "Hour": 20,
+    "Count": 65
+  },
+  {
+    "Weekday": 3,
+    "Hour": 21,
+    "Count": 68
+  },
+  {
+    "Weekday": 3,
+    "Hour": 22,
+    "Count": 37
+  },
+  {
+    "Weekday": 3,
+    "Hour": 23,
+    "Count": 34
+  },
+  {
+    "Weekday": 4,
+    "Hour": 0,
+    "Count": 33
+  },
+  {
+    "Weekday": 4,
+    "Hour": 1,
+    "Count": 1
+  },
+  {
+    "Weekday": 4,
+    "Hour": 2,
+    "Count": 1
+  },
+  {
+    "Weekday": 4,
+    "Hour": 17,
+    "Count": 29
+  },
+  {
+    "Weekday": 4,
+    "Hour": 18,
+    "Count": 36
+  },
+  {
+    "Weekday": 4,
+    "Hour": 19,
+    "Count": 27
+  },
+  {
+    "Weekday": 4,
+    "Hour": 20,
+    "Count": 23
+  },
+  {
+    "Weekday": 4,
+    "Hour": 21,
+    "Count": 20
+  },
+  {
+    "Weekday": 4,
+    "Hour": 22,
+    "Count": 3
+  },
+  {
+    "Weekday": 4,
+    "Hour": 23,
+    "Count": 16
+  },
+  {
+    "Weekday": 5,
+    "Hour": 1,
+    "Count": 4
+  },
+  {
+    "Weekday": 5,
+    "Hour": 15,
+    "Count": 1
+  },
+  {
+    "Weekday": 5,
+    "Hour": 16,
+    "Count": 2
+  },
+  {
+    "Weekday": 5,
+    "Hour": 18,
+    "Count": 88
+  },
+  {
+    "Weekday": 5,
+    "Hour": 19,
+    "Count": 58
+  },
+  {
+    "Weekday": 5,
+    "Hour": 20,
+    "Count": 50
+  },
+  {
+    "Weekday": 5,
+    "Hour": 21,
+    "Count": 69
+  },
+  {
+    "Weekday": 5,
+    "Hour": 22,
+    "Count": 31
+  },
+  {
+    "Weekday": 5,
+    "Hour": 23,
+    "Count": 47
+  },
+  {
+    "Weekday": 6,
+    "Hour": 0,
+    "Count": 11
+  },
+  {
+    "Weekday": 6,
+    "Hour": 1,
+    "Count": 7
+  },
+  {
+    "Weekday": 6,
+    "Hour": 2,
+    "Count": 2
+  },
+  {
+    "Weekday": 6,
+    "Hour": 18,
+    "Count": 92
+  },
+  {
+    "Weekday": 6,
+    "Hour": 19,
+    "Count": 85
+  },
+  {
+    "Weekday": 6,
+    "Hour": 20,
+    "Count": 59
+  },
+  {
+    "Weekday": 6,
+    "Hour": 21,
+    "Count": 32
+  },
+  {
+    "Weekday": 6,
+    "Hour": 22,
+    "Count": 34
+  },
+  {
+    "Weekday": 6,
+    "Hour": 23,
+    "Count": 23
+  },
+  {
+    "Weekday": 7,
+    "Hour": 0,
+    "Count": 12
+  },
+  {
+    "Weekday": 7,
+    "Hour": 1,
+    "Count": 1
+  },
+  {
+    "Weekday": 7,
+    "Hour": 13,
+    "Count": 1
+  },
+  {
+    "Weekday": 7,
+    "Hour": 17,
+    "Count": 1
+  },
+  {
+    "Weekday": 7,
+    "Hour": 18,
+    "Count": 37
+  },
+  {
+    "Weekday": 7,
+    "Hour": 19,
+    "Count": 41
+  },
+  {
+    "Weekday": 7,
+    "Hour": 20,
+    "Count": 20
+  },
+  {
+    "Weekday": 7,
+    "Hour": 21,
+    "Count": 20
+  },
+  {
+    "Weekday": 7,
+    "Hour": 22,
+    "Count": 29
+  },
+  {
+    "Weekday": 7,
+    "Hour": 23,
+    "Count": 11
+  }
+]

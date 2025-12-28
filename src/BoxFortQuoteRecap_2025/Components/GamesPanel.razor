@@ -1,0 +1,103 @@
+﻿@using MediatR
+@using BoxFortQuoteRecap_2025.Application.Queries
+@inject IMediator Mediator
+@inject IJSRuntime JS
+
+<div class="stats-panel">
+    <div class="header">
+        <h2>Most Quoted Games - Quote Recap 2025</h2>
+    </div>
+
+    @if (IsLoading) {
+        <p>Loading game stats…</p>
+    } else if (LoadError is not null) {
+        <div class="error">Error loading stats: @LoadError</div>
+    } else if (GameStats is null || GameStats.Length == 0) {
+        <p>No game stats available.</p>
+    } else {
+        <div class="charts">
+            <canvas id="ringChart" width="256" height="256"></canvas>
+            <canvas id="legendChart" width="300" height="200"></canvas>
+        </div>
+    }
+</div>
+
+@code {
+    private bool IsLoading { get; set; } = true;
+    private string? LoadError { get; set; }
+    private GameStatsEntry[]? GameStats { get; set; }
+
+    private IJSObjectReference? _module;
+    private bool _renderedOnce = false;
+
+    protected override async Task OnInitializedAsync() {
+        try {
+            IsLoading = true;
+            LoadError = null;
+
+            var stats = await Mediator.Send(new GetQuoteGameStatsQuery());
+            GameStats = stats?.ToArray() ?? Array.Empty<GameStatsEntry>();
+        } catch (Exception ex) {
+            LoadError = ex.Message;
+            GameStats = Array.Empty<GameStatsEntry>();
+        } finally {
+            IsLoading = false;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (firstRender) {
+            var version = typeof(Program).Assembly.GetName().Version?.ToString();
+            _module = await JS.InvokeAsync<IJSObjectReference>(
+                "import", $"/js/retroCharts.js?v={version}");
+        }
+
+        if (!_renderedOnce &&
+            !IsLoading &&
+            LoadError is null &&
+            GameStats?.Length > 0 &&
+            _module is not null) {
+
+            try {
+                var data = GameStats.ToDictionary(
+                    s => s.Game ?? "Unknown",
+                    s => s.QuoteCount
+                );
+
+                await _module.InvokeVoidAsync(
+                    "renderRingPieChart",
+                    "ringChart",
+                    data,
+                    new {
+                        width = 256,
+                        height = 256,
+                        lowRes = 128,
+                        innerRatio = 0.45,      // 45% of outer radius
+                        outerPadding = 4,
+                        dither = true
+                    });
+
+                await _module.InvokeVoidAsync(
+                    "renderLegend",
+                    "legendChart",
+                    data,
+                    new {
+                        width = 300,
+                        height = 200,
+                        dither = false
+                    });
+
+                _renderedOnce = true;
+            } catch (Exception ex) {
+                LoadError = $"JS error: {ex.Message}";
+                StateHasChanged();
+            }
+        }
+    }
+
+    public async ValueTask DisposeAsync() {
+        if (_module is not null) {
+            await _module.DisposeAsync();
+        }
+    }
+}

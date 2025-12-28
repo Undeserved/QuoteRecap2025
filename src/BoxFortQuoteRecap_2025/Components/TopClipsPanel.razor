@@ -1,0 +1,88 @@
+﻿@using MediatR
+@using System.Globalization
+
+@inject IMediator Mediator
+
+<section class="top-clips-panel">
+    <h2>Top Clips of the Year</h2>
+
+    @if (_isLoading) {
+        <p class="loading">Loading clips…</p>
+    } else if (!_clips.Any()) {
+        <p class="empty-state">No clips available.</p>
+    } else {
+        <ul class="clips-list">
+            @for (var i = 0; i < _clips.Count; i++) {
+                var clip = _clips[i];
+
+                <li class="clip-item @GetRankClass(i)">
+                    <div class="clip-rank">
+                        @(i + 1)
+                        <span class="medal">@GetMedal(i)</span>
+                    </div>
+
+                    <div class="clip-content">
+                        <iframe src="@clip.EmbedUrl"
+                                width="320"
+                                height="180"
+                                allowfullscreen
+                                loading="lazy">
+                        </iframe>
+
+                        <div class="clip-meta">
+                            <div class="clip-title">
+                                @clip.Title
+                            </div>
+
+                            <div class="clip-views">
+                                @clip.ViewCount.ToString("N0", CultureInfo.InvariantCulture) views
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+</section>
+
+@code {
+    private bool _isLoading = true;
+    private List<TopClipVm> _clips = new();
+
+    protected override async Task OnInitializedAsync() {
+        _isLoading = true;
+
+        var result = await Mediator.Send(new GetClipsMostRequestedQuery());
+
+        _clips = result
+            .Take(3)
+            .Select(c => new TopClipVm {
+                Title = c.Title,
+                EmbedUrl = c.EmbedUrl,
+                ViewCount = c.ViewCount
+            })
+            .ToList();
+
+        _isLoading = false;
+    }
+
+    private static string GetRankClass(int index) => index switch {
+        0 => "gold",
+        1 => "silver",
+        2 => "bronze",
+        _ => string.Empty
+    };
+
+    private static string GetMedal(int index) => index switch {
+        0 => "🥇",
+        1 => "🥈",
+        2 => "🥉",
+        _ => string.Empty
+    };
+
+    private sealed class TopClipVm {
+        public string Title { get; init; } = string.Empty;
+        public string EmbedUrl { get; init; } = string.Empty;
+        public int ViewCount { get; init; }
+    }
+}

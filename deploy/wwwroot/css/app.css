@@ -1,0 +1,348 @@
+﻿:root {
+    --tile-size: 350px; /* Adjust tile size here */
+}
+
+/* ===============================
+   VALIDATION
+   =============================== */
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+/* ===============================
+   ERROR UI
+   =============================== */
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+}
+
+    .blazor-error-boundary::after {
+        content: "An error has occurred."
+    }
+
+/* ===============================
+   LOADING PROGRESS
+   =============================== */
+
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem auto;
+}
+
+    .loading-progress circle {
+        fill: none;
+        stroke: #e0e0e0;
+        stroke-width: 0.6rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-90deg);
+    }
+
+        .loading-progress circle:last-child {
+            stroke: #1b6ec2;
+            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+            transition: stroke-dasharray 0.05s ease-in-out;
+        }
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+    .loading-progress-text:after {
+        content: var(--blazor-load-percentage-text, "Loading");
+    }
+
+/* ===============================
+   CODE COLOURING
+   =============================== */
+
+code {
+    color: #c02d76;
+}
+
+/* ===============================
+   BACKGROUND (CHESSBOARD)
+   =============================== */
+
+body {
+    /* 2-layer chessboard tiling */
+    background-image: url("/res/BoxFortQuoteRecap.png"), url("/res/BoxFortQuoteRecap.png");
+    background-repeat: repeat, repeat;
+    background-size: var(--tile-size), var(--tile-size);
+    background-position: 0 0, /* layer 1 */
+    calc(var(--tile-size) / 2) calc(var(--tile-size) / 2); /* layer 2 offset */
+}
+
+/* Optional blur overlay, now matching the pattern */
+.background-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("/res/BoxFortQuoteRecap.png"), url("/res/BoxFortQuoteRecap.png");
+    background-repeat: repeat, repeat;
+    background-size: var(--tile-size), var(--tile-size);
+    background-position: 0 0, calc(var(--tile-size) / 2) calc(var(--tile-size) / 2);
+    opacity: 0.5;
+    filter: blur(1px);
+    z-index: 0;
+}
+
+/* ===============================
+   BANNERS
+   =============================== */
+
+.page-banner img,
+.app-banner img {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    image-rendering: pixelated;
+}
+
+/* ===============================
+   TOP QUOTES PANEL
+   =============================== */
+
+.top-quotes-panel {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+    .top-quotes-panel h2 {
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 1.35rem;
+        font-weight: 700;
+    }
+
+.quotes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quote-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem;
+    margin-bottom: 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    gap: 0.75rem;
+}
+
+.rank {
+    width: 2.25rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.quote-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.quote-id {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+
+.quote-content-row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.quote-content {
+    font-size: 1rem;
+    flex: 1;
+    margin-right: 1rem;
+    word-break: break-word;
+}
+
+.quote-hits {
+    white-space: nowrap;
+    opacity: 0.85;
+    font-size: 1rem;
+    margin-left: auto;
+}
+
+/* Rank colours */
+
+.gold {
+    border-left: 5px solid #FFD700;
+    color: #FFD700;
+}
+
+.silver {
+    border-left: 5px solid #C0C0C0;
+    color: #C0C0C0;
+}
+
+.bronze {
+    border-left: 5px solid #CD7F32;
+    color: #CD7F32;
+}
+
+.crown {
+    margin-left: 0.3rem;
+    font-size: 1.4rem;
+}
+
+.medal {
+    margin-left: 0.3rem;
+}
+
+/* ===============================
+   TOP CLIPS PANEL
+   =============================== */
+
+.top-clips-panel {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+    .top-clips-panel h2 {
+        text-align: center;
+        margin-bottom: 1.2rem;
+        font-size: 1.4rem;
+    }
+
+.clips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.clip-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+.clip-rank {
+    width: 2.5rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.clip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+    .clip-content iframe {
+        border-radius: 4px;
+        border: none;
+        max-width: 100%;
+    }
+
+.clip-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* Medal colours */
+.clip-item.gold {
+    border-left: 5px solid #FFD700;
+}
+
+.clip-item.silver {
+    border-left: 5px solid #C0C0C0;
+}
+
+.clip-item.bronze {
+    border-left: 5px solid #CD7F32;
+}
+
+/* ===============================
+   STATUS PANEL
+   =============================== */
+
+.ui-status {
+    font-weight: bold;
+    letter-spacing: 0.08em;
+}
+
+.status-good {
+    color: #7CFF7C;
+}
+
+.status-poison {
+    color: #9BFF3D;
+}
+
+.status-stone {
+    color: #BFBFBF;
+}
+
+.status-curse {
+    color: #C94B4B;
+}
+
+/* ===============================
+   CV FONT
+   =============================== */
+
+@font-face {
+    font-family: "OldLondon";
+    src: url("/res/OldLondon.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-old-london {
+    font-family: "OldLondon", system-ui, sans-serif;
+}

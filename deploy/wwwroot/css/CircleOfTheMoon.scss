@@ -1,0 +1,118 @@
+﻿$gba-blue-top: #0a1ca8;
+$gba-blue-bottom: #01020a;
+$gba-panel-bg: #0c164a;
+$gba-border: #ffffff;
+$gba-text: #ffffff;
+$gba-red: #d01010;
+$gba-orange: #ff7a00;
+$gba-font: 'Press Start 2P', monospace;
+$border-width: 2px;
+
+body {
+    background: #000;
+    box-sizing: border-box;
+}
+
+.ui-container {
+    background: linear-gradient(to bottom, $gba-blue-top 0%, $gba-blue-bottom 100%);
+    padding: 1rem;
+    outline: $border-width solid $gba-border;
+    color: $gba-text;
+    font-family: $gba-font;
+    text-transform: uppercase;
+    font-size: 11px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+// === LEFT MENU ===
+.ui-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.ui-menu-button {
+    position: relative;
+    width: 160px;
+    padding: 0.35rem 0.5rem 0.35rem 1rem;
+    color: $gba-text;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background: $gba-panel-bg;
+    clip-path: polygon(0 0, 88% 0, 100% 50%, 88% 100%, 0 100%);
+    cursor: pointer;
+    text-align: left;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        clip-path: inherit;
+        outline: $border-width solid $gba-border;
+        pointer-events: none;
+    }
+
+    &:hover:not(.active) {
+        background: $gba-orange;
+    }
+
+    &.active {
+        background: $gba-red;
+        color: $gba-border;
+    }
+}
+
+// === RIGHT PANEL ===
+.ui-panel {
+  position: relative;
+  background: $gba-panel-bg;
+  padding: 0.6rem 1rem;
+  color: $gba-text;
+  box-sizing: border-box;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    clip-path: inherit;
+    outline: $border-width solid $gba-border;
+    filter: drop-shadow(0 0 0 white); 
+    pointer-events: none;
+  }
+}
+
+.ui-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.25rem 0;
+}
+
+hr {
+    border: none;
+    border-top: $border-width solid $gba-border;
+    margin: 0.4rem 0;
+}
+
+.ui-status {
+    position: relative;
+    background: $gba-panel-bg;
+    padding: 0.3rem 0.5rem;
+    grid-column: 1 / span 2;
+    color: $gba-text;
+    text-align: center;
+    box-sizing: border-box;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        clip-path: inherit;
+        outline: $border-width solid $gba-border;
+        filter: drop-shadow(0 0 0 white);
+        pointer-events: none;
+    }
+}

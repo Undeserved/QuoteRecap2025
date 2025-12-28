@@ -1,0 +1,52 @@
+﻿@using BoxFortQuoteRecap_2025.Application.Queries
+@inject IMediator Mediator
+
+<div class="top-quotes-panel">
+    <h2>Most Requested Quotes</h2>
+
+    @if (quotes is null) {
+        <p>Loading...</p>
+    } else {
+        <ol class="quotes-list">
+            @foreach (var quote in quotes) {
+                var index = quotes.IndexOf(quote);
+                var rankClass = index switch {
+                    0 => "gold",
+                    1 => "silver",
+                    2 => "bronze",
+                    _ => "normal"
+                };
+
+                <li class="quote-item @rankClass">
+                    <div class="rank">
+                        @(index + 1)
+                        @if (index == 0) {
+                            <span class="crown">👑</span>
+                        } else if (index == 1) {
+                            <span class="medal">🥈</span>
+                        } else if (index == 2) {
+                            <span class="medal">🥉</span>
+                        }
+                    </div>
+
+                    <div class="quote-info">
+                        <div class="quote-id">Quote #@quote.QuoteId</div>
+                        <div class="quote-content-row">
+                            <span class="quote-content">@quote.Content</span>
+                            <span class="quote-hits">@quote.Hits Hits</span>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ol>
+    }
+</div>
+
+@code {
+    private List<TopQuotesEntry>? quotes;
+
+    protected override async Task OnInitializedAsync() {
+        var topQuotes = await Mediator.Send(new GetQuoteMostRequestedQuery());
+        quotes = topQuotes.ToList();
+    }
+}
