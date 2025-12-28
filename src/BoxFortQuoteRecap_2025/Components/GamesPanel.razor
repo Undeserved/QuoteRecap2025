@@ -49,7 +49,7 @@
         if (firstRender) {
             var version = typeof(Program).Assembly.GetName().Version?.ToString();
             _module = await JS.InvokeAsync<IJSObjectReference>(
-                "import", $"/js/retroCharts.js?v={version}");
+                "import", $"./js/retroCharts.js?v={version}");
         }
 
         if (!_renderedOnce &&

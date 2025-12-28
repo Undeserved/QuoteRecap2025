@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BoxFortQuoteRecap_2025",
   "resources": {
-    "hash": "sha256-/N+bpILi/TBnHeiotY73jqvuYStOk0LKYMP5vS0PT3I=",
+    "hash": "sha256-wY31lqkz+alEU6SBvH8G11xeRYeHX69zw/znlSgsZFA=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-9Fzd5We95Rp03dEKIAbYjPDR3eWyLbmjMlYStvxyiok="
     },
@@ -23,7 +23,7 @@
       "BoxFortQuoteRecap_2025.Application.wasm": "sha256-SrXLbPJGrFFwyC+yL2R2574IkgBTFZoWtlCJsmXXaf0=",
       "BoxFortQuoteRecap_2025.Domain.wasm": "sha256-d91llWb8Yi3V+iYEDXhlkrAWxHiThAzBm+3SdQ6C3CM=",
       "BoxFortQuoteRecap_2025.Infrastructure.wasm": "sha256-SoxyXHhmzJvtrOxiEF7MKScYF2zXCIsWfwaUQI/UruE=",
-      "BoxFortQuoteRecap_2025.wasm": "sha256-SYyp7XRygrDTZdOECt612IDKCNuKzrYPoTk2EN2rxqA=",
+      "BoxFortQuoteRecap_2025.wasm": "sha256-0sT3vysgEc4bBkGUsjoGgeKz2kfOrt4xzTJYdRip7zM=",
       "MediatR.Contracts.wasm": "sha256-/db+nahzjeSd5EhxUqFrpFzJ998Up6Vgs1PHrV3jqkU=",
       "MediatR.wasm": "sha256-Gk8OlwvjG1lGJAwNeNga3uGJDAYS1JLMt8xpzY0i4Yg=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-sawpV++huiVid6krEds+lL0hTtk7mRVyMvFHZSvusGc=",
