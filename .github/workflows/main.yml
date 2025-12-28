@@ -1,0 +1,37 @@
+name: Deploy Blazor WASM to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Publish Blazor WebAssembly
+        run: dotnet publish src/BoxFortQuoteRecap_2025/BoxFortQuoteRecap_2025.csproj -c Release
+
+      - name: Prepare deployment folder
+        run: |
+          rm -rf deploy
+          cp -r src/BoxFortQuoteRecap_2025/bin/Release/net8.0/publish/wwwroot deploy
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: deploy
