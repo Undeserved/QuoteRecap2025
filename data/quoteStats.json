@@ -1,0 +1,14 @@
+{
+  "QuoteCount": 1212,
+  "YearCount": 179,
+  "GameCount": 55,
+  "RequestCount": 2480,
+  "MostRequestedQuoteId": 1,
+  "MostRequestedQuoteContent": "I am a weeb",
+  "MostQuotedGame": "Death Stranding 2: On The Beach",
+  "MemeStat": 0,
+  "LongestGapInDays": 15,
+  "PeakRequestDay": "2024-04-01",
+  "PeakRequestCount": 42,
+  "UnrequestedQuote": 123
+}
