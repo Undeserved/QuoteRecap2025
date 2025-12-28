@@ -22,12 +22,12 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Publish Blazor WebAssembly
-        run: dotnet publish -c Release
+        run: dotnet publish src/BoxFortQuoteRecap_2025/BoxFortQuoteRecap_2025.csproj -c Release
 
       - name: Prepare deployment folder
         run: |
           rm -rf deploy
-          cp -r bin/Release/net8.0/publish/wwwroot deploy
+          cp -r src/BoxFortQuoteRecap_2025/bin/Release/net8.0/publish/wwwroot deploy
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
