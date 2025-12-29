@@ -64,19 +64,27 @@ export function renderRingPieChart(canvasId, data, options = {}) {
         dither = true
     } = options;
 
+    // Preserve insertion order
+    const entries = Object.entries(data);
+
+    const total = entries.reduce(
+        (a, [, b]) => a + (Number.isFinite(b) ? b : 0),
+        0
+    );
+
+    const finalCtx = canvas.getContext("2d");
+    canvas.width = width;
+    canvas.height = height;
+
+    if (total <= 0) {
+        finalCtx.clearRect(0, 0, width, height);
+        return;
+    }
+
     const tmp = document.createElement("canvas");
     tmp.width = lowRes;
     tmp.height = lowRes;
     const ctx = tmp.getContext("2d");
-
-    const total = Object.values(data).reduce((a, b) => a + (Number.isFinite(b) ? b : 0), 0);
-    if (total <= 0) {
-        const finalCtx = canvas.getContext("2d");
-        canvas.width = width;
-        canvas.height = height;
-        finalCtx.clearRect(0, 0, width, height);
-        return;
-    }
 
     const cx = lowRes / 2;
     const cy = lowRes / 2;
@@ -84,21 +92,19 @@ export function renderRingPieChart(canvasId, data, options = {}) {
     const r = Math.max(0, R * Math.min(Math.max(innerRatio, 0.05), 0.9));
 
     let start = -Math.PI / 2;
-    const entries = Object.entries(data);
 
     for (let idx = 0; idx < entries.length; idx++) {
-        const [game, value] = entries[idx];
+        const [, value] = entries[idx];
         const angle = (value / total) * Math.PI * 2;
         const end = start + angle;
+
         if (!isFinite(angle) || angle <= 0) {
             start = end;
             continue;
         }
 
         const path = new Path2D();
-        // outer arc (clockwise)
         path.arc(cx, cy, R, start, end, false);
-        // inner arc (counter-clockwise)
         path.arc(cx, cy, r, end, start, true);
 
         const [pr, pg, pb] = GBA_PALETTE[idx % GBA_PALETTE.length];
@@ -112,10 +118,6 @@ export function renderRingPieChart(canvasId, data, options = {}) {
         applyDitherAndPalette(ctx, lowRes, lowRes);
     }
 
-    // Upscale
-    const finalCtx = canvas.getContext("2d");
-    canvas.width = width;
-    canvas.height = height;
     finalCtx.imageSmoothingEnabled = false;
     finalCtx.drawImage(tmp, 0, 0, width, height);
 }
@@ -127,7 +129,16 @@ export function renderLegend(canvasId, data, options = {}) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
 
-    const { width = 256, height = 200, dither = false } = options;
+    const entries = Object.entries(data);
+
+    const lineH = 22;
+    const padX = 10;
+    const padY = 10;
+
+    const width = options.width ?? 256;
+    const minHeight = options.height ?? 200;
+    const neededHeight = padY * 2 + entries.length * lineH;
+    const height = Math.max(minHeight, neededHeight);
 
     const tmp = document.createElement("canvas");
     tmp.width = width;
@@ -136,16 +147,12 @@ export function renderLegend(canvasId, data, options = {}) {
     ctx.imageSmoothingEnabled = false;
 
     ctx.font = "14px monospace";
-    ctx.fillStyle = "white";
-
-    const entries = Object.entries(data);
-    const lineH = 22;
-    const padX = 10;
-    const padY = 10;
+    ctx.textAlign = "left";
 
     entries.forEach(([game], idx) => {
         const y = padY + idx * lineH;
         const [r, g, b] = GBA_PALETTE[idx % GBA_PALETTE.length];
+
         ctx.fillStyle = `rgb(${r},${g},${b})`;
         ctx.fillRect(padX, y, 16, 16);
 
@@ -153,7 +160,7 @@ export function renderLegend(canvasId, data, options = {}) {
         ctx.fillText(game, padX + 25, y + 13);
     });
 
-    if (dither) {
+    if (options.dither) {
         applyDitherAndPalette(ctx, width, height);
     }
 
@@ -168,101 +175,85 @@ export function renderLegend(canvasId, data, options = {}) {
 // Histogram
 //-------------------------------
 
-export function renderHistogram(canvasId, entries, opts) {
+export function renderHistogram(canvasId, data, opts = {}) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
-    const W = opts.width;
-    const H = opts.height;
+    ctx.imageSmoothingEnabled = false;
 
-    canvas.width = W;
-    canvas.height = H;
+    const W = canvas.width;
+    const H = canvas.height;
+
+    const padding = opts.padding ?? 40;
+    const years = Object.keys(data);
+
+    // Reserve vertical space for legend
+    const legendHeight = years.length * 20 + 10;
+    const topPadding = padding + legendHeight;
+
+    // Flatten data and find max
+    const allEntries = Object.values(data).flat();
+    const maxValue = Math.max(...allEntries.map(e => e.quoteCount));
 
     ctx.clearRect(0, 0, W, H);
 
-    const padding = opts.padding ?? 40;
-    const barGap = opts.barGap ?? 4;
-
-    // ---- Determine months & years ----
-    const months = [...new Set(entries.map(e => e.month))].sort((a, b) => a - b);
-    const years = [...new Set(entries.map(e => e.year))].sort((a, b) => a - b);
-
-    // ---- Year & Colour map ----
-    const palette = ["#E43F5A", "#FF9F1C", "#2EC4B6", "#1B98E0", "#9D4EDD"];
-    const yearColor = {};
-    years.forEach((y, i) => yearColor[y] = palette[i % palette.length]);
-
-    const maxValue = Math.max(...entries.map(e => e.quoteCount), 1);
-
-    const usableWidth = W - padding * 2;
-    const columnWidth = usableWidth / months.length;
-
-    // -------------------------
-    // Draw Bars
-    // -------------------------
-    months.forEach((month, mIndex) => {
-        const xBase = padding + mIndex * columnWidth;
-
-        years.forEach((year, yIndex) => {
-            const e = entries.find(e => e.month === month && e.year === year);
-            if (!e) return;
-
-            const barHeight = (e.quoteCount / maxValue) * (H - padding * 2);
-            const bw = ((columnWidth - barGap) / years.length);
-            const x = xBase + yIndex * bw;
-
-            ctx.fillStyle = yearColor[year];
-            ctx.fillRect(x, H - padding - barHeight, bw, barHeight);
-
-            if (opts.retroOutline) {
-                ctx.strokeStyle = "#000";
-                ctx.lineWidth = 1;
-                ctx.strokeRect(x, H - padding - barHeight, bw, barHeight);
-            }
-        });
-
-        // ---- Month Label ----
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-        ctx.fillStyle = "white";
-        ctx.font = "14px monospace";
-        ctx.textAlign = "center";
-        ctx.fillText(monthNames[month - 1], xBase + columnWidth / 2, H - padding + 15);
-    });
-
-    // -------------------------
-    // X-axis line
-    // -------------------------
-    ctx.strokeStyle = "white";
-    ctx.lineWidth = 2;
+    // Draw axes
+    ctx.strokeStyle = "#ffffff";
     ctx.beginPath();
     ctx.moveTo(padding, H - padding);
     ctx.lineTo(W - padding, H - padding);
     ctx.stroke();
 
-    // -------------------------
-    // Legend (top-left)
-    // -------------------------
-    let ly = padding - 20;
+    const months = data[years[0]].map(e => e.month);
+    const groupWidth = (W - padding * 2) / months.length;
+    const barWidth = groupWidth / years.length;
 
-    years.forEach(year => {
-        ctx.fillStyle = yearColor[year];
+    // Draw bars
+    months.forEach((month, mIdx) => {
+        years.forEach((year, yIdx) => {
+            const entry = data[year][mIdx];
+            if (!entry) return;
+
+            const value = entry.quoteCount;
+            const barHeight =
+                (value / maxValue) * (H - topPadding - padding);
+
+            const x =
+                padding +
+                mIdx * groupWidth +
+                yIdx * barWidth;
+
+            const y = H - padding - barHeight;
+
+            const [r, g, b] = GBA_PALETTE[yIdx % GBA_PALETTE.length];
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
+            ctx.fillRect(x, y, barWidth - 1, barHeight);
+        });
+    });
+
+    // Month labels
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "12px monospace";
+    months.forEach((month, i) => {
+        const x = padding + i * groupWidth + groupWidth / 2;
+        ctx.fillText(month, x - 10, H - padding + 15);
+    });
+
+    // Legend
+    let ly = padding;
+    years.forEach((year, i) => {
+        const [r, g, b] = GBA_PALETTE[i % GBA_PALETTE.length];
+
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
         ctx.fillRect(padding, ly, 12, 12);
 
-        ctx.strokeStyle = "#000";
-        ctx.strokeRect(padding, ly, 12, 12);
-
-        ctx.fillStyle = "white";
-        ctx.font = "14px monospace";
-        ctx.textAlign = "left";
-        ctx.fillText(year, padding + 18, ly + 11);
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(year, padding + 20, ly + 10);
 
         ly += 20;
     });
 }
-
 
 //-------------------------------
 // Heatmap
