@@ -1,14 +1,50 @@
 [
   {
-    "Game": "Entry 1",
-    "QuoteCount": 50
+    "Game": "Death Stranding 2: On The Beach",
+    "QuoteCount": 21
   },
   {
-    "Game": "Entry 2",
-    "QuoteCount": 75
-  },  
+    "Game": "Just Chatting",
+    "QuoteCount": 18
+  },
   {
-    "Game": "Other",
-    "QuoteCount": 33
+    "Game": "HITMAN World of Assassination",
+    "QuoteCount": 16
+  },
+  {
+    "Game": "SILENT HILL ƒ",
+    "QuoteCount": 8
+  },
+  {
+    "Game": "METAL GEAR SOLID Δ: SNAKE EATER",
+    "QuoteCount": 7
+  },
+  {
+    "Game": "EA Sports College Football 25",
+    "QuoteCount": 7
+  },
+  {
+    "Game": "Pathologic Classic HD",
+    "QuoteCount": 6
+  },
+  {
+    "Game": "Nubby's Number Factory",
+    "QuoteCount": 6
+  },
+  {
+    "Game": "Keep Driving",
+    "QuoteCount": 6
+  },
+  {
+    "Game": "Special Events",
+    ,"QuoteCount": 5
+  }
+  {
+    "Game": "Bogos Binted?",
+    "QuoteCount": 5
+  },
+  {
+    "Game": "Others",
+    "QuoteCount": 107
   }
 ]

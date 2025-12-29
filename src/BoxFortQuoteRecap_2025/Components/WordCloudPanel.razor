@@ -1,13 +1,53 @@
 ﻿@inject IJSRuntime JS
 @inject IMediator Mediator
 
-<canvas id="wordCloudCanvas" width="1024" height="256"></canvas>
+<canvas id="wordCloudCanvas" width="768" height="384"></canvas>
+
+<div style="display:flex; justify-content:flex-start; margin-top:8px;">
+    <button @onclick="Reroll"
+            style="
+                font-family: inherit;
+                cursor: pointer;
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            ">
+        REROLL
+    </button>
+</div>
 
 @code {
-    protected override async Task OnAfterRenderAsync(bool firstRender) {
-        if (!firstRender) return;
+    private bool _hasRendered;
 
+    protected override async Task OnAfterRenderAsync(bool firstRender) {
+        if (firstRender) {
+            _hasRendered = true;
+            await RenderWordCloud();
+        }
+    }
+
+    private async Task Reroll() {
+        if (!_hasRendered)
+            return;
+
+        await RenderWordCloud();
+    }
+
+    private async Task RenderWordCloud() {
         var items = await Mediator.Send(new GenerateWordCloudCommand());
-        await JS.InvokeVoidAsync("renderWordCloud", "wordCloudCanvas", items);
+
+        // Clear canvas before re-render
+        await JS.InvokeVoidAsync("eval", @"
+            const c = document.getElementById('wordCloudCanvas');
+            if (c) {
+                const ctx = c.getContext('2d');
+                ctx.clearRect(0, 0, c.width, c.height);
+            }
+        ");
+
+        await JS.InvokeVoidAsync(
+            "renderWordCloud",
+            "wordCloudCanvas",
+            items
+        );
     }
 }

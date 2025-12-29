@@ -10,9 +10,16 @@
 <div class="ui-row"><span>TOTAL REQUESTS</span><span>@stats.RequestCount</span></div>
 <hr />
 <div class="ui-row"><span>LEAST REQUESTED</span><span>@stats.UnrequestedQuote</span></div>
-<div class="ui-row"><span>PEAK REQUESTS</span><span>@stats.PeakRequestDay ( @stats.PeakRequestCount Hits )</span></div>
+<div class="ui-row">
+    <span>PEAK REQUESTS</span>
+    <span>
+        @stats.PeakRequestDay.ToString("yyyy-MM-dd")
+        ( @stats.PeakRequestCount Hits )
+    </span>
+</div>
 <div class="ui-row"><span>LONGEST GAP</span><span>@stats.LongestGapInDays Days</span></div>
-<div class="ui-row"><span>GAMES FINISHED</span><span>@stats.MemeStat</span></div>
+<hr />
+<div class="ui-row"><span>TGA CATEGORIES WON BY DS2</span><span>@stats.MemeStat</span></div>
 
 @code {
     private QuoteStatsEntry? stats;
