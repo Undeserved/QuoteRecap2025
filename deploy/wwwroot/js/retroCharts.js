@@ -174,10 +174,9 @@ export function renderLegend(canvasId, data, options = {}) {
 //-------------------------------
 // Histogram
 //-------------------------------
-
 export function renderHistogram(canvasId, data, opts = {}) {
     const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
+    if (!canvas || !Array.isArray(data)) return;
 
     const ctx = canvas.getContext("2d");
     ctx.imageSmoothingEnabled = false;
@@ -186,38 +185,81 @@ export function renderHistogram(canvasId, data, opts = {}) {
     const H = canvas.height;
 
     const padding = opts.padding ?? 40;
-    const years = Object.keys(data);
 
-    // Reserve vertical space for legend
-    const legendHeight = years.length * 20 + 10;
+    // --------------------------------------------------
+    // Normalise data (ARRAY -> grouped by year)
+    // --------------------------------------------------
+    const byYear = {};
+    data.forEach(e => {
+        if (!byYear[e.year]) byYear[e.year] = [];
+        byYear[e.year].push({
+            month: e.month,
+            quoteCount: e.quoteCount
+        });
+    });
+
+    const years = Object.keys(byYear).sort();
+    if (years.length === 0) return;
+
+    // Ensure months are ordered
+    years.forEach(y =>
+        byYear[y].sort((a, b) => a.month - b.month)
+    );
+
+    // --------------------------------------------------
+    // Legend sizing
+    // --------------------------------------------------
+    const legendLineH = 20;
+    const legendHeight = years.length * legendLineH + 10;
     const topPadding = padding + legendHeight;
 
-    // Flatten data and find max
-    const allEntries = Object.values(data).flat();
-    const maxValue = Math.max(...allEntries.map(e => e.quoteCount));
+    // --------------------------------------------------
+    // Max value
+    // --------------------------------------------------
+    const maxValue = Math.max(
+        ...data.map(e => e.quoteCount),
+        1
+    );
 
     ctx.clearRect(0, 0, W, H);
 
-    // Draw axes
+    // --------------------------------------------------
+    // X-axis
+    // --------------------------------------------------
     ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(padding, H - padding);
     ctx.lineTo(W - padding, H - padding);
     ctx.stroke();
 
-    const months = data[years[0]].map(e => e.month);
+    const months = byYear[years[0]].map(e => e.month);
     const groupWidth = (W - padding * 2) / months.length;
     const barWidth = groupWidth / years.length;
 
-    // Draw bars
+    const monthNames = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    // --------------------------------------------------
+    // Colours: reverse GBA palette
+    // --------------------------------------------------
+    const reversedPalette = [...GBA_PALETTE]
+        .reverse()
+        .filter((_, i) => i % 2 === 0);
+
+    // --------------------------------------------------
+    // Bars
+    // --------------------------------------------------
     months.forEach((month, mIdx) => {
         years.forEach((year, yIdx) => {
-            const entry = data[year][mIdx];
+            const entry = byYear[year][mIdx];
             if (!entry) return;
 
-            const value = entry.quoteCount;
             const barHeight =
-                (value / maxValue) * (H - topPadding - padding);
+                (entry.quoteCount / maxValue) *
+                (H - topPadding - padding);
 
             const x =
                 padding +
@@ -226,32 +268,57 @@ export function renderHistogram(canvasId, data, opts = {}) {
 
             const y = H - padding - barHeight;
 
-            const [r, g, b] = GBA_PALETTE[yIdx % GBA_PALETTE.length];
+            const [r, g, b] =
+                reversedPalette[yIdx % reversedPalette.length];
+
             ctx.fillStyle = `rgb(${r},${g},${b})`;
             ctx.fillRect(x, y, barWidth - 1, barHeight);
+
+            if (opts.retroOutline) {
+                ctx.strokeStyle = "#000";
+                ctx.lineWidth = 1;
+                ctx.strokeRect(x, y, barWidth - 1, barHeight);
+            }
         });
     });
 
+    // --------------------------------------------------
     // Month labels
+    // --------------------------------------------------
     ctx.fillStyle = "#ffffff";
     ctx.font = "12px monospace";
+    ctx.textAlign = "center";
+
     months.forEach((month, i) => {
         const x = padding + i * groupWidth + groupWidth / 2;
-        ctx.fillText(month, x - 10, H - padding + 15);
+        ctx.fillText(
+            monthNames[month - 1],
+            x,
+            H - padding + 15
+        );
     });
 
+    // --------------------------------------------------
     // Legend
+    // --------------------------------------------------
     let ly = padding;
+    ctx.font = "14px monospace";
+    ctx.textAlign = "left";
+
     years.forEach((year, i) => {
-        const [r, g, b] = GBA_PALETTE[i % GBA_PALETTE.length];
+        const [r, g, b] =
+            reversedPalette[i % reversedPalette.length];
 
         ctx.fillStyle = `rgb(${r},${g},${b})`;
         ctx.fillRect(padding, ly, 12, 12);
 
-        ctx.fillStyle = "#ffffff";
-        ctx.fillText(year, padding + 20, ly + 10);
+        ctx.strokeStyle = "#000";
+        ctx.strokeRect(padding, ly, 12, 12);
 
-        ly += 20;
+        ctx.fillStyle = "#ffffff";
+        ctx.fillText(year, padding + 20, ly + 11);
+
+        ly += legendLineH;
     });
 }
 
