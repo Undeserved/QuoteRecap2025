@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BoxFortQuoteRecap_2025",
   "resources": {
-    "hash": "sha256-90Ljlqq+yVKF39inGDvu9iOfg8PrZbkNPO532wZya/E=",
+    "hash": "sha256-zC9IN0tGovhOp5ZmMoNJ3LrnvkoaZ8C3akWXfrj/lzE=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-vtotCeXt2UD6oc459laJT32vBgigZ+eLoUmdeFkvYDk="
     },
@@ -20,15 +20,15 @@
     "assembly": {
       "Blazor.Extensions.Canvas.JS.wasm": "sha256-ctyeKHsvFswpiKQJpTUUWdSrDGr4UNirukOrWYnwW78=",
       "Blazor.Extensions.Canvas.wasm": "sha256-2AOrAB5tgoiK9wMMmwiE/pKPAtTjzgFudxSl6g4dt9s=",
-      "BoxFortQuoteRecap_2025.Application.wasm": "sha256-xKj8cVkiHbOm53ws8Na3lDrmAfzrdKkRf2W6dyVNHhE=",
-      "BoxFortQuoteRecap_2025.Domain.wasm": "sha256-6JwP/t7km2rTLPj3Tk5+9AMAcd3GYZmXXP4SiU5HDGw=",
-      "BoxFortQuoteRecap_2025.Infrastructure.wasm": "sha256-TSIL7Y5Q9HoJUh2fkESFvkmDrJurVyr/JCrrGw337b4=",
-      "BoxFortQuoteRecap_2025.wasm": "sha256-vxIRVWz1t87lNHaxe1HJB0ke7HAOTIRAEnYKElE6SUU=",
+      "BoxFortQuoteRecap_2025.Application.wasm": "sha256-VOjQmG6ptAiCktQGm2R2Vpk0pknDKu91ZubhO1daEYA=",
+      "BoxFortQuoteRecap_2025.Domain.wasm": "sha256-GsPEp+hXbueE7K37GdEpyDwTrP1le45+OQjW45OZS0k=",
+      "BoxFortQuoteRecap_2025.Infrastructure.wasm": "sha256-bAk504xiF9bL22pEJKOAtGXT0UVpbS74D9lEEJ5uogM=",
+      "BoxFortQuoteRecap_2025.wasm": "sha256-mE0FDg52IPvC0WYjnCJF3FJSt+PmGMFMZVEeOetba40=",
       "MediatR.Contracts.wasm": "sha256-/db+nahzjeSd5EhxUqFrpFzJ998Up6Vgs1PHrV3jqkU=",
       "MediatR.wasm": "sha256-Gk8OlwvjG1lGJAwNeNga3uGJDAYS1JLMt8xpzY0i4Yg=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-nrDuxNgdtqJTPCWbzF1l0bB3rQ9y4ru8u0nXTAq2zQY=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-4ei2k3wrZc7eKguq6GIqHh9XZeL2SYDrYA7ghXQsRoU=",
-      "Microsoft.AspNetCore.Components.wasm": "sha256-sawpV++huiVid6krEds+lL0hTtk7mRVyMvFHZSvusGc=",
+      "Microsoft.AspNetCore.Components.wasm": "sha256-pGy+mOsm/uwuaRz5jf+X1h+R8ggTX8NG70VQOyS/H1o=",
       "Microsoft.CSharp.wasm": "sha256-RSM9bLqHq1CY3b3BGT2IJO9Is3QoOl1xdNRJdKdRmzo=",
       "Microsoft.Extensions.Configuration.Abstractions.wasm": "sha256-tokqmIj9Lw7BiUzRHblGjtf2agSBn/KJw+pYy1XHIXg=",
       "Microsoft.Extensions.Configuration.Binder.wasm": "sha256-vgH6vAUsGVvfi9busizG03ZEC4iy6RZYB8/GyOO4dqk=",

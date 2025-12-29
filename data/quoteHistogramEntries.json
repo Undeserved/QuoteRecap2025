@@ -1,67 +1,182 @@
 [
   {
-    "Year": 2024,
-    "Month": 12,
-    "QuoteCount": 1205
-  },
-  {
-    "Year": 2025,
     "Month": 1,
-    "QuoteCount": 1200
+    "QuoteCount": 36,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 2,
-    "QuoteCount": 1350
+    "QuoteCount": 13,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 3,
-    "QuoteCount": 1100
+    "QuoteCount": 33,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 4,
-    "QuoteCount": 1450
+    "QuoteCount": 24,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 5,
-    "QuoteCount": 1600
+    "QuoteCount": 31,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 6,
-    "QuoteCount": 1700
+    "QuoteCount": 23,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 7,
-    "QuoteCount": 1800
+    "QuoteCount": 20,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 8,
-    "QuoteCount": 1750
+    "QuoteCount": 24,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 9,
-    "QuoteCount": 1600
+    "QuoteCount": 14,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 10,
-    "QuoteCount": 1900
+    "QuoteCount": 26,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 11,
-    "QuoteCount": 2000
+    "QuoteCount": 15,
+    "Year": 2023
   },
   {
-    "Year": 2025,
     "Month": 12,
-    "QuoteCount": 2100
+    "QuoteCount": 16,
+    "Year": 2023
+  },
+  {
+    "Month": 1,
+    "QuoteCount": 27,
+    "Year": 2024
+  },
+  {
+    "Month": 2,
+    "QuoteCount": 18,
+    "Year": 2024
+  },
+  {
+    "Month": 3,
+    "QuoteCount": 20,
+    "Year": 2024
+  },
+  {
+    "Month": 4,
+    "QuoteCount": 21,
+    "Year": 2024
+  },
+  {
+    "Month": 5,
+    "QuoteCount": 19,
+    "Year": 2024
+  },
+  {
+    "Month": 6,
+    "QuoteCount": 15,
+    "Year": 2024
+  },
+  {
+    "Month": 7,
+    "QuoteCount": 14,
+    "Year": 2024
+  },
+  {
+    "Month": 8,
+    "QuoteCount": 16,
+    "Year": 2024
+  },
+  {
+    "Month": 9,
+    "QuoteCount": 23,
+    "Year": 2024
+  },
+  {
+    "Month": 10,
+    "QuoteCount": 14,
+    "Year": 2024
+  },
+  {
+    "Month": 11,
+    "QuoteCount": 19,
+    "Year": 2024
+  },
+  {
+    "Month": 12,
+    "QuoteCount": 20,
+    "Year": 2024
+  },
+  {
+    "Month": 1,
+    "QuoteCount": 25,
+    "Year": 2025
+  },
+  {
+    "Month": 2,
+    "QuoteCount": 16,
+    "Year": 2025
+  },
+  {
+    "Month": 3,
+    "QuoteCount": 11,
+    "Year": 2025
+  },
+  {
+    "Month": 4,
+    "QuoteCount": 17,
+    "Year": 2025
+  },
+  {
+    "Month": 5,
+    "QuoteCount": 22,
+    "Year": 2025
+  },
+  {
+    "Month": 6,
+    "QuoteCount": 17,
+    "Year": 2025
+  },
+  {
+    "Month": 7,
+    "QuoteCount": 18,
+    "Year": 2025
+  },
+  {
+    "Month": 8,
+    "QuoteCount": 22,
+    "Year": 2025
+  },
+  {
+    "Month": 9,
+    "QuoteCount": 20,
+    "Year": 2025
+  },
+  {
+    "Month": 10,
+    "QuoteCount": 11,
+    "Year": 2025
+  },
+  {
+    "Month": 11,
+    "QuoteCount": 17,
+    "Year": 2025
+  },
+  {
+    "Month": 12,
+    "QuoteCount": 21,
+    "Year": 2025
   }
 ]
