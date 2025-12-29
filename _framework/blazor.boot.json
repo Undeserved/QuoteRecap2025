@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BoxFortQuoteRecap_2025",
   "resources": {
-    "hash": "sha256-FOhkGnF8+lpr4bshfJxcS+1B9ngbKgdq8Or/nBtqDfQ=",
+    "hash": "sha256-qddnH/h11LaUZ8DKMLLvYt0VLLAQJd1orxB2hUs323o=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-vtotCeXt2UD6oc459laJT32vBgigZ+eLoUmdeFkvYDk="
     },
@@ -20,10 +20,10 @@
     "assembly": {
       "Blazor.Extensions.Canvas.JS.wasm": "sha256-ctyeKHsvFswpiKQJpTUUWdSrDGr4UNirukOrWYnwW78=",
       "Blazor.Extensions.Canvas.wasm": "sha256-2AOrAB5tgoiK9wMMmwiE/pKPAtTjzgFudxSl6g4dt9s=",
-      "BoxFortQuoteRecap_2025.Application.wasm": "sha256-sGSKiGtyRETtGi308la62DtnZSYxrQJYtXd/RKqaLMI=",
-      "BoxFortQuoteRecap_2025.Domain.wasm": "sha256-piXXFKfPKVxQnRLTNXyHyc6o38YAM7JFdge3tqVKcTg=",
-      "BoxFortQuoteRecap_2025.Infrastructure.wasm": "sha256-nhlkgzlAT8wru1+G93Ax7n7OTO4jUYWquygZI9VVW4s=",
-      "BoxFortQuoteRecap_2025.wasm": "sha256-02T79K0EyJE+ZWmHEbk5gyQi05NNgluylNDfOdJnLSE=",
+      "BoxFortQuoteRecap_2025.Application.wasm": "sha256-FbaxbDfiPeYXDAwpOaiF8tBN94LE1Irtp1LwDVWIhsY=",
+      "BoxFortQuoteRecap_2025.Domain.wasm": "sha256-T+vNOAuJLdAl+PnT3w8H1Dcov4CQq+9CddHiYf7sJDw=",
+      "BoxFortQuoteRecap_2025.Infrastructure.wasm": "sha256-lsq5THoXgY9YTlrHVZxuOMEGJV2nEdQ/KQ+qbiP1LAE=",
+      "BoxFortQuoteRecap_2025.wasm": "sha256-GlhhAS+2JsBAzJ5VS3hItLxtXn5Z0bB8To/qqUqVTp4=",
       "MediatR.Contracts.wasm": "sha256-/db+nahzjeSd5EhxUqFrpFzJ998Up6Vgs1PHrV3jqkU=",
       "MediatR.wasm": "sha256-Gk8OlwvjG1lGJAwNeNga3uGJDAYS1JLMt8xpzY0i4Yg=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-nrDuxNgdtqJTPCWbzF1l0bB3rQ9y4ru8u0nXTAq2zQY=",
