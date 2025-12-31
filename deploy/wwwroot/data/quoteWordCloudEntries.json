@@ -1,46 +1,62 @@
 [
   {
     "Word": "big",
-    "Count": 12
+    "Count": 13
   },
   {
     "Word": "fuck",
-    "Count": 11
-  },
-  {
-    "Word": "man",
-    "Count": 10
+    "Count": 13
   },
   {
     "Word": "need",
-    "Count": 9
+    "Count": 12
   },
   {
-    "Word": "out",
-    "Count": 9
+    "Word": "man",
+    "Count": 12
+  },
+  {
+    "Word": "now",
+    "Count": 11
   },
   {
     "Word": "can't",
-    "Count": 9
+    "Count": 11
+  },
+  {
+    "Word": "right",
+    "Count": 11
+  },
+  {
+    "Word": "out",
+    "Count": 10
   },
   {
     "Word": "want",
     "Count": 8
   },
   {
-    "Word": "now",
-    "Count": 8
-  },
-  {
-    "Word": "i've",
-    "Count": 8
-  },
-  {
-    "Word": "right",
+    "Word": "more",
     "Count": 8
   },
   {
     "Word": "one",
+    "Count": 8
+  },
+  {
+    "Word": "go",
+    "Count": 8
+  },
+  {
+    "Word": "ass",
+    "Count": 7
+  },
+  {
+    "Word": "gonna",
+    "Count": 7
+  },
+  {
+    "Word": "little",
     "Count": 7
   },
   {
@@ -48,7 +64,15 @@
     "Count": 7
   },
   {
-    "Word": "ass",
+    "Word": "hard",
+    "Count": 7
+  },
+  {
+    "Word": "woman",
+    "Count": 6
+  },
+  {
+    "Word": "up",
     "Count": 6
   },
   {
@@ -60,32 +84,16 @@
     "Count": 6
   },
   {
-    "Word": "gonna",
-    "Count": 6
-  },
-  {
     "Word": "give",
     "Count": 6
   },
   {
-    "Word": "go",
+    "Word": "real",
     "Count": 6
   },
   {
-    "Word": "hard",
+    "Word": "dude",
     "Count": 6
-  },
-  {
-    "Word": "woman",
-    "Count": 5
-  },
-  {
-    "Word": "up",
-    "Count": 5
-  },
-  {
-    "Word": "more",
-    "Count": 5
   },
   {
     "Word": "blow",
@@ -100,7 +108,11 @@
     "Count": 5
   },
   {
-    "Word": "little",
+    "Word": "gay",
+    "Count": 5
+  },
+  {
+    "Word": "dog",
     "Count": 5
   },
   {
@@ -108,11 +120,15 @@
     "Count": 5
   },
   {
-    "Word": "real",
+    "Word": "gotta",
     "Count": 5
   },
   {
-    "Word": "gotta",
+    "Word": "time",
+    "Count": 5
+  },
+  {
+    "Word": "butterfly",
     "Count": 5
   },
   {
@@ -120,15 +136,15 @@
     "Count": 4
   },
   {
+    "Word": "kill",
+    "Count": 4
+  },
+  {
     "Word": "guy",
     "Count": 4
   },
   {
-    "Word": "you're",
-    "Count": 4
-  },
-  {
-    "Word": "-",
+    "Word": "baby",
     "Count": 4
   },
   {
@@ -140,11 +156,23 @@
     "Count": 4
   },
   {
-    "Word": "time",
+    "Word": "boy",
+    "Count": 4
+  },
+  {
+    "Word": "here",
     "Count": 4
   },
   {
     "Word": "put",
+    "Count": 4
+  },
+  {
+    "Word": "love",
+    "Count": 4
+  },
+  {
+    "Word": "suck",
     "Count": 4
   }
 ]

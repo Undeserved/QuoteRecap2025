@@ -276,11 +276,6 @@
   },
   {
     "Weekday": 7,
-    "Hour": 13,
-    "Count": 1
-  },
-  {
-    "Weekday": 7,
     "Hour": 17,
     "Count": 1
   },
