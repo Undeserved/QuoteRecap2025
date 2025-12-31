@@ -1,14 +1,14 @@
 {
-  "QuoteCount": 1212,
-  "YearCount": 179,
-  "GameCount": 55,
+  "QuoteCount": 1256,
+  "YearCount": 223,
+  "GameCount": 70,
   "RequestCount": 2480,
-  "MostRequestedQuoteId": 1,
+  "MostRequestedQuoteId": 680,
   "MostRequestedQuoteContent": "I am a weeb",
-  "MostQuotedGame": "Death Stranding 2: On The Beach",
+  "MostQuotedGame": "I'll embrace World War 2 all over again.",
   "MemeStat": 0,
-  "LongestGapInDays": 15,
-  "PeakRequestDay": "2024-04-01",
-  "PeakRequestCount": 42,
+  "LongestGapInDays": 26,
+  "PeakRequestDay": "2025-12-30",
+  "PeakRequestCount": 57,
   "UnrequestedQuote": 123
 }
